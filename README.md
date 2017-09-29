@@ -1,4 +1,4 @@
-# Patterns+Selenium Testing
+# HW2: Patterns+Selenium Testing
 
 ### Object Oriented Patterns
 
