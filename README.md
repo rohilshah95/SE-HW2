@@ -147,7 +147,7 @@ The drawbacks are that
 
 
 #### 3. Functor
-Often when designing general-purpose software, we make use of callback functions l A callback function is a function that is made known to the system to be called at a later time when certain events occur l In C and C++ we can use pointers to functions as a callback mechanism, but this is not available in Java l In Java we must use an object that serves the role of a pointer to a function. 
+Often when designing general-purpose software, we make use of callback functions. A callback function is a function that is made known to the system to be called at a later time when certain events occur. In C and C++ we can use pointers to functions as a callback mechanism, but this is not available in Java. In Java we must use an object that serves the role of a pointer to a function. 
 
 A functor is a class with usually only one method whose instances serve the role of a pointer to a function. Functor objects can be created, passed as parameters and manipulated wherever function pointers are needed. 
 
