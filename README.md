@@ -117,9 +117,60 @@ The template method is used for the following reasons:
 * Avoid duplication in the code: the general workflow structure is implemented once in the abstract class's algorithm, and necessary variations are implemented in the subclasses.
 Control at what point(s) subclassing is allowed. As opposed to a simple polymorphic override, where the base method would be entirely rewritten allowing radical change to the workflow, only the specific details of the workflow are allowed to change.
 
+### Free Style
+
+#### 1. Monad
+Monads is a design pattern that allows us to redefine how function composition works. a monad is a design pattern that defines how functions, actions, inputs, and outputs can be used together to build generic types, with the following organization:
+* Define a data type, and how values of that data type are combined.
+* Create functions that use the data type, and compose them together into actions, following the rules defined in the first step.
+
+A monad may encapsulate values of a particular data type, creating a new type associated with a specific additional computation, typically to handle special cases of the type. For example, the simple Maybe monad encapsulates variables which may have a null value, representing an option type, and automatically ensures that null values are not passed as arguments to functions that cannot handle them, serving as an alternative programming technique to throwing and catching exceptions when null values arise. Another example is the List monad, where the empty list is a constant value of type List, and the cons operator binds a plain value as the head of a previous list.
+
+Monads allow a programming style where programs are written by putting together highly composable parts, combining in flexible ways the possible actions that can work on a particular type of data. As such, monads have been described as "programmable semicolons"; a semicolon is the operator used to chain together individual statements in many imperative programming languages, thus the expression implies that extra code will be executed between the actions in the pipeline.
+
+#### 2. Monoid
+Monoid Pattern defines a set of objects and an operation for combining them together (plus a unique identity value which can be combined with any object to return that object).
+
+You can see the Monoid behaviour in several well-known types:
+* Integer numbers where 0 is the identity and you can combine them together to from new numbers
+* Lists that can be concatenated together (where Nil or the empty list [] is the identity)
+* Strings that can be appended (and where the empty string or “” is the identity)
+
+The Monoid Pattern is useful in two contexts. It is usual in any scenario where you have a group of values/objects that you wish to be able to combine together and for which you wish to have a no-op identity element. Such scenarios are common whenever you are creating data structure like types. The other context for a Monoid is that it is a stepping-stone towards the Monad pattern.
+
+The advantages of the Monoid Pattern include:
+* A standardised approach to how values may be combined in a particular domain.
+* The guarantee of associativity ensures that the behaviour associated with function combinations is defined.
+
+The drawbacks are that
+* Not all sets can easily be made transitive. For example, strictly speaking the String Monoid as implemented falls down on this point as concatenating two strings together may result in a different result depending on the ordering of the strings.
+
+
+#### 3. Functor
+Often when designing general-purpose software, we make use of callback functions l A callback function is a function that is made known to the system to be called at a later time when certain events occur l In C and C++ we can use pointers to functions as a callback mechanism, but this is not available in Java l In Java we must use an object that serves the role of a pointer to a function. 
+
+A functor is a class with usually only one method whose instances serve the role of a pointer to a function. Functor objects can be created, passed as parameters and manipulated wherever function pointers are needed. 
+
+A functor transforms one category into another category.
+functor uses a function that we will call map to convert every component in the source category into a component in the destination category.
+
+We expect this map function to satisfy two rules:
+* Rule #1: map must transform the composition operator in the source category to the composition operator in the destination category
+This is the "composition law".
+* Rule #2: map must transform the identity in the source category to the identity in the destination category.
+
+Functors serve as adapters between categories that promote code written for the source category to be automatically compatible with the destination category. Functors arise every time we write compatibility layers and adapters between different pieces of software.
+
 
 ### Selenium Testing
 The code for the selenium testing code is uploaded: [Here](https://github.ncsu.edu/rshah8/HW2/raw/master/WebTest.java)
 
-References: [https://en.wikipedia.org/wiki/Software_design_pattern](https://en.wikipedia.org/wiki/Software_design_pattern),  [https://sourcemaking.com/design_patterns](https://sourcemaking.com/design_patterns), Head First Design Patterns Book by Elisabeth Freeman and Kathy Sierra
+### References: 
+* [https://en.wikipedia.org/wiki/Software_design_pattern](https://en.wikipedia.org/wiki/Software_design_pattern)  
+* https://sourcemaking.com/design_patterns](https://sourcemaking.com/design_patterns) 
+* Head First Design Patterns Book by Elisabeth Freeman and Kathy Sierra
+* [https://en.wikipedia.org/wiki/Monad_%28functional_programming%29](https://en.wikipedia.org/wiki/Monad_%28functional_programming%29) 
+* [https://link.springer.com/chapter/10.1007%2F978-3-319-02192-8_38](https://link.springer.com/chapter/10.1007%2F978-3-319-02192-8_38) 
+* [http://www.buyya.com/254/Patterns/Command-2pp.pdf](http://www.buyya.com/254/Patterns/Command-2pp.pdf) 
+* [http://www.haskellforall.com/2012/09/the-functor-design-pattern.html](http://www.haskellforall.com/2012/09/the-functor-design-pattern.html)
 
